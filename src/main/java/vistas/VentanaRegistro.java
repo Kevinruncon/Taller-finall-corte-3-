@@ -1099,9 +1099,9 @@ limpiarCamposProp();
         txtDocuPropietario.setText(null);
     }
      private void limpiarCamposProp() {
-        txtDoc.setText(null);
-        txtNomProp.setText(null);
-        txtTel.setText(null);
+        txtDocumentoResgitroProp.setText(null);
+        txtNombreRegistroPropietario.setText(null);
+        txtTelefonoRegistroProp.setText(null);
     }
 
     public static void main(String args[]) {
