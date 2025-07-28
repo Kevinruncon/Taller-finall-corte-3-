@@ -6,22 +6,21 @@ package dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import modelo.Consulta;
 
 /**
  *
  * @author Kevin
  */
 public class DtoHistorial implements Serializable {
-    private ArrayList<Consulta> consultas;
+    private ArrayList<DtoConsultaBase> consultasYvacunas;
 
     public DtoHistorial() {
-        this.consultas = new ArrayList<>();
+        this.consultasYvacunas = new ArrayList<>();
     }
 
-    public void agregarConsulta(Consulta consulta) {
-        if (consulta != null) {
-            consultas.add(consulta);
+    public void agregarConsulta(DtoConsultaBase consultaYvacunas) {
+        if (consultaYvacunas != null) {
+            consultasYvacunas.add(consultaYvacunas);
         }
     }
 
@@ -36,8 +35,8 @@ public class DtoHistorial implements Serializable {
         }
     }*/
 
-    public ArrayList<Consulta> getConsultas() {
-        return new ArrayList<>(consultas);
+    public ArrayList<DtoConsultaBase> getConsultas() {
+        return new ArrayList<>(consultasYvacunas);
     }
 }
 

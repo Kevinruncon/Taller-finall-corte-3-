@@ -5,7 +5,6 @@
 package daos;
 
 import java.util.ArrayList;
-import modelo.Consulta;
 
 /**
  *

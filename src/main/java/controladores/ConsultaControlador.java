@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controladores;
-import modelo.Consulta;
 import daos.DaoConsulta;
 import dto.DtoMascota;
 import java.time.LocalDate;

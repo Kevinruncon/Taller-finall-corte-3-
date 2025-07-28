@@ -5,7 +5,6 @@
 package dto;
 
 import java.io.Serializable;
-import modelo.Consulta;
 import modelo.Historial;
 import modelo.Mascotas;
 
@@ -59,7 +58,7 @@ public class DtoMascota implements Serializable{
         this.Id = Id;
     }
 
-    public void agregarConsulta(Consulta consulta) {
+  /*  public void agregarConsulta(Consulta consulta) {
         // consultas.add(consulta);
         historial.agregarConsulta(consulta); // ✅ delegar
     }

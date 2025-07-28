@@ -4,44 +4,43 @@
  */
 package modelo;
 
+import dto.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import modelo.Veterinario;
 
 /**
  *
  * @author Kevin
  */
-public class Consulta {
-    private int idMas;
-    private String codigo;
+public class Consulta extends ConsultaBase implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     // private String fecha;
     // ✅ Refactor:
-    private LocalDate fecha;
     private Veterinario veterinario;
     private String documentoPropCons;
-    private String nombreMasCons;
+    private  String nombreMasCons;
     private String diagnostico;
     private String tratamiento;
-    
 
-    public Consulta(String codigo, String fecha, Veterinario veterinario, String documentoPropCons, String nombreMasCons,String diagnostico,String tratamiento,int idMas) {
-        /*this.codigo = codigo;
-        this.fecha = fecha;
-        this.veterinario = veterinario;*/
-        // ✅ Validación y conversión de fecha
+    public Consulta(String codigo, Veterinario veterinario, String documentoPropCons, String nombreMasCons, String diagnostico, String tratamiento, String fecha, int idMas) {
+        super(fecha, idMas, codigo);
+        setCodigo(codigo);
+        setVeterinario(veterinario);
         setDocumentoPropCons(documentoPropCons);
+        setNombreMasCons(nombreMasCons);
         setDiagnostico(diagnostico);
         setTratamiento(tratamiento);
-        setNombreMasCons(nombreMasCons);
-        setCodigo(codigo);
-        setFecha(fecha);
-        setVeterinario(veterinario);
     }
 
+    @Override
     public int getIdMas() {
         return idMas;
     }
 
+    @Override
     public void setIdMas(int idMas) {
         this.idMas = idMas;
     }
@@ -74,7 +73,7 @@ public class Consulta {
         return nombreMasCons;
     }
 
-    public void setNombreMasCons(String nombreMasCons) {
+    public void setNombreMasCons(String  nombreMasCons) {
         this.nombreMasCons = nombreMasCons;
     }
     
@@ -94,14 +93,14 @@ public class Consulta {
     }
 
     public void setCodigo(String codigo) {
-        if (codigo == null || codigo.isBlank()) {
+       /* if (codigo == null || codigo.isBlank()) {
             throw new IllegalArgumentException("Código inválido.");
-        }
+        }*/
         this.codigo = codigo;
     }
 
     // public String getFecha() { return fecha; }
-    public LocalDate getFecha() { return fecha; }
+   /* public LocalDate getFecha() { return fecha; }
 
     public void setFecha(String fechaTexto) {
         try {
@@ -109,18 +108,24 @@ public class Consulta {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de fecha inválido.");
         }
-    }
+    }*/
 
     public Veterinario getVeterinario() {
         return veterinario;
     }
 
     public void setVeterinario(Veterinario veterinario) {
-        if (veterinario == null) {
+       /* if (veterinario == null) {
             throw new IllegalArgumentException("Veterinario requerido.");
-        }
+        }*/
         this.veterinario = veterinario;
     }
-}
+    
+    public String mostrar(){
+     return " Consulta | Fecha: " + fecha + ", Codigo: " + codigo + "Nom Mascota: " + nombreMasCons + "Doc Propietario: "+ documentoPropCons + "Veterinario: " + 
+             veterinario + ", Descripción: " + diagnostico +"Tratamiento: " + tratamiento ;
 
+    }
+
+}
 

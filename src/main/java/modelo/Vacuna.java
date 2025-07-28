@@ -4,29 +4,36 @@
  */
 package modelo;
 
+import dto.*;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  *
  * @author Kevin
  */
-public class Vacuna {
-     private String tipo;
+public class Vacuna extends ConsultaBase implements Serializable{
+    private String tipo;
     private String lote;
-    private LocalDate fechaAplicacion;
     private LocalDate proximaDosis;
 
-    // Constructor vacío
-    public Vacuna() {
+    public Vacuna(String tipo, String lote, String proximaDosis, String fecha, int idMas,String codigo) {
+        super(fecha, idMas,codigo);
+         setTipo(tipo);
+        setLote(lote);
+        setProximaDosis(proximaDosis); 
     }
+ 
+   
 
     // Constructor con parámetros
-    public Vacuna(String tipo, String lote, LocalDate fechaAplicacion, LocalDate proximaDosis) {
+    /*public DtoVacuna(String tipo, String lote, LocalDate fechaAplicacion, LocalDate proximaDosis) {
         setTipo(tipo);
         setLote(lote);
         setFechaAplicacion(fechaAplicacion);
         setProximaDosis(proximaDosis);
-    }
+    }*/
 
     // Getter y Setter para tipo
     public String getTipo() {
@@ -37,7 +44,8 @@ public class Vacuna {
       /*  if (tipo != null && !tipo.isBlank()) {
             this.tipo = tipo;
         }*/
-      this.tipo = tipo;
+    this.tipo = tipo;
+
     }
 
     // Getter y Setter para lote
@@ -46,42 +54,60 @@ public class Vacuna {
     }
 
     public void setLote(String lote) {
-     /*   if (lote != null && !lote.isBlank()) {
+       /* if (lote != null && !lote.isBlank()) {
             this.lote = lote;
         }*/
-     this.lote = lote ;
+       this.lote = lote;
+
     }
+
+
+ public LocalDate getProximaDosis() {
+        return proximaDosis;
+}
 
     // Getter y Setter para fechaAplicacion
-    public LocalDate getFechaAplicacion() {
-        return fechaAplicacion;
+    /* public LocalDate getFechaAplicacion() {
+    return fechaAplicacion;
     }
-
     public void setFechaAplicacion(LocalDate fechaAplicacion) {
-      /*  if (fechaAplicacion != null) {
-            this.fechaAplicacion = fechaAplicacion;
-        }*/
-      this.fechaAplicacion = fechaAplicacion;
+    if (fechaAplicacion != null) {
+    this.fechaAplicacion = fechaAplicacion;
     }
-
+    }
     // Getter y Setter para proximaDosis
     public LocalDate getProximaDosis() {
-        return proximaDosis;
-    }
+    return proximaDosis;
+    }*/
 
-    public void setProximaDosis(LocalDate proximaDosis) {
-      /*  if (proximaDosis != null) {
-            this.proximaDosis = proximaDosis;
+    public void setProximaDosis(String proximaDosis) {
+       /* if (proximaDosis == null || proximaDosis.trim().isEmpty()) {
+            this.proximaDosis = null; // o decide si deberías lanzar excepción
+            return;
+        }
+        
+        try {
+            this.proximaDosis = LocalDate.parse(proximaDosis);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Formato de fecha inválido. Se esperaba yyyy-MM-dd.");
         }*/
-      this.proximaDosis = proximaDosis;
+                   this.proximaDosis = LocalDate.parse(proximaDosis);
+
     }
 
-    // Método auxiliar si se desea mostrar
-    /*public String mostrarVacuna() {
+
+
+   /* // Método auxiliar si se desea mostrar
+    public String mostrarVacuna() {
         return "Tipo: " + tipo + " | Lote: " + lote +
                " | Fecha Aplicación: " + fechaAplicacion +
                " | Próxima dosis: " + proximaDosis;
     }*/
+
+    @Override
+    public String mostrar(){
+     return " Vacuna | Fecha: " + fecha + ", Tipo: " + tipo + "Lote: " + lote + "Proxima Dosis: "+ proximaDosis ;
+
+    }
+
 }
-
-

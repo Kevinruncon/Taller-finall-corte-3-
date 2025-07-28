@@ -64,6 +64,7 @@ vistas\VentanaVacuna$4.class
 vistas\VentanaRegistro$9.class
 vistas\VentanaMedicina$1.class
 vistas\VentanaPrincipal$1.class
+modelo\ConsultaBase.class
 vistas\VentanaVacuna$7.class
 controladores\MascotaControlador.class
 vistas\VentanaRegistro$16.class

@@ -12,8 +12,6 @@ import controladores.MascotaControlador;
 import dto.DtoMascota;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import modelo.Consulta;
-import modelo.Mascotas;
 import dto.DtoConsultaBase;
 import controladores.ControladorConsultaBase;
 import dto.DtoConsulta;
