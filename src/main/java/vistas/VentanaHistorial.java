@@ -66,7 +66,7 @@ public class VentanaHistorial extends javax.swing.JFrame {
 
     tablaHistorial.setModel(modelo);
 }*/
-    private void listarHistorial(int idMascota) {
+  /*  private void listarHistorial(int idMascota) {
     DefaultTableModel modelo = new DefaultTableModel();
     modelo.setColumnIdentifiers(new Object[] {
         "Nombre Mascota", "Documento Propietario", "Fecha", "Código", "Tipo", "Diagnóstico / Tipo Vacuna", "Tratamiento / Próxima Dosis"
@@ -109,6 +109,66 @@ public class VentanaHistorial extends javax.swing.JFrame {
     }
 
     tablaHistorial.setModel(modelo);
+}*/
+public void ListarHistorial(int id) {
+     DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[] {
+        "Fecha", "Código","Id Mascota","Nombre Mascota", "Documento Propietario","Veterinario", "Especialidad", "Tipo","Diagnostico","Tratamiento", "Tipo Vacuna", "Próxima Dosis"
+    });
+//ID mascota","Nombre","Tipo", "Fecha", "Diagnostico", "Tratamiento","Vacuna", "Dosis", "Veterinario"
+    ControladorHistorial controladorHistorial = new ControladorHistorial();
+    ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(id);
+    DtoMascota mascota = controladorHistorial.obtenerMascota(id); // Obtener la mascota
+
+    String nombreMascota = "";
+    String propietarioMascota = "";
+    if (mascota != null) {
+        nombreMascota = mascota.getNombre();
+        propietarioMascota = mascota.getDocumentoPropietario();
+    }
+
+    for (DtoConsultaBase atencion : historial) {
+        String tipo = "";
+        String diagnostico = "";
+        String tratamiento = "";
+        String tipoVacuna = "";
+        String proximaDosis = "";
+        String veterinario = "";
+        String veterinarioesp = "";
+        String codigo = "";
+
+        if (atencion instanceof  DtoConsulta consulta) {
+            tipo = "Consulta";
+            codigo = consulta.getCodigo();
+            diagnostico = consulta.getDiagnostico();
+            tratamiento = consulta.getTratamiento();
+            veterinario = consulta.getVeterinario().getNombre();
+            veterinarioesp = consulta.getVeterinario().getEspecialidad();
+        } else if (atencion instanceof DtoVacuna vacuna) {
+            tipo = "Vacuna";
+            codigo = vacuna.getCodigo();
+            tipoVacuna = vacuna.getTipo();
+            proximaDosis = vacuna.getProximaDosis().toString();
+        }
+
+        modelo.addRow(new Object[] {
+           atencion.getFecha(),
+            codigo,
+            atencion.getIdMas(),
+            nombreMascota,
+            propietarioMascota,
+            veterinario,
+            veterinarioesp,
+            tipo,
+            diagnostico,
+            tratamiento,
+            tipoVacuna,
+            proximaDosis,
+            
+        });
+    }
+        tablaHistorial.setModel(modelo);
+
 }
 
 
@@ -255,7 +315,7 @@ public class VentanaHistorial extends javax.swing.JFrame {
         }
 
         // Llama a tu método para llenar la tabla
-        listarHistorial(id);
+        ListarHistorial(id);
     
 
 

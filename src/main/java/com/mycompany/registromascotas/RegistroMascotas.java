@@ -4,11 +4,7 @@
 
 package com.mycompany.registromascotas;
 
-import controladores.PropietarioControlador;
-import java.util.ArrayList;
-import modelo.Mascotas;
-import modelo.Propietario;
-import daos.DaoMascotas;
+import vistas.VentanaPrincipal;
 
 /**
  *
@@ -18,7 +14,7 @@ public class RegistroMascotas {
 
     public static void main(String[] args) {
  
-
+            new VentanaPrincipal().setVisible(true);
     }
     }
 
