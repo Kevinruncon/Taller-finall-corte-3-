@@ -471,7 +471,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
     private void btnEditarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarConsultasActionPerformed
 
-        int fila = tablaMedicina.getSelectedRow();
+        int fila = tablaConsulta.getSelectedRow();
 
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Por favor selecciona una Consulta para continuar.");
