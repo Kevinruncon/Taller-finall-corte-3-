@@ -97,7 +97,12 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
         tablaConsulta.setModel(modelo);
     }
-
+public void LimpiarCampos(){
+    txtMedicinaCodigo.setText(null);
+    txtMedicinaDiagnostico.setText(null);
+    txtMedicinaIdMas.setText(null);
+    txtMedicinaTartamiento.setText(null);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -411,6 +416,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
             if (guardado) {
                 listarConsultas(); // Refrescar tabla
+                LimpiarCampos();
                 JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
             } else {
                 JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");

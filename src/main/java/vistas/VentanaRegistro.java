@@ -157,6 +157,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         btnEliminarProp = new javax.swing.JButton();
         btnEditarProp = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         lblTittle = new javax.swing.JLabel();
         bttMenu = new javax.swing.JButton();
 
@@ -490,7 +491,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
+                .addGap(114, 114, 114)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -598,10 +599,17 @@ public class VentanaRegistro extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Actualizar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -612,27 +620,32 @@ public class VentanaRegistro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBuscarResgitroProp)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtNombreRegistroPropietario)
-                        .addComponent(txtDocumentoResgitroProp)
-                        .addComponent(txtTelefonoRegistroProp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEliminarProp)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEditarProp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBuscarResgitroProp)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombreRegistroPropietario)
+                                .addComponent(txtDocumentoResgitroProp)
+                                .addComponent(txtTelefonoRegistroProp, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnEliminarProp)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditarProp)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(btnLimpiar)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,6 +673,8 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addComponent(btnEliminarProp)
                     .addComponent(btnEditarProp)
                     .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -670,7 +685,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
 
         bttMenu.setBackground(new java.awt.Color(225, 225, 225));
         bttMenu.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        bttMenu.setText(" ");
+        bttMenu.setText("menu");
         bttMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttMenuActionPerformed(evt);
@@ -685,9 +700,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addContainerGap(295, Short.MAX_VALUE)
                 .addComponent(lblTittle)
-                .addGap(234, 234, 234)
-                .addComponent(bttMenu)
-                .addGap(120, 120, 120))
+                .addGap(257, 257, 257)
+                .addComponent(bttMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
             .addComponent(tabbedResgiPropi, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         panelPrincipalLayout.setVerticalGroup(
@@ -794,6 +809,11 @@ public class VentanaRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre del propietario debe contener solo letras.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         int id, edad;
         try {
             id = Integer.parseInt(idStr);
@@ -865,8 +885,8 @@ public class VentanaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarResgitroPropActionPerformed
 
     private void bttEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarActionPerformed
-        int fila = tablamas.getSelectedRow();
-        if (fila != -1 && fila >= 0) {
+        /* int fila = tablamas.getSelectedRow();
+        if (fila != -1 ) {
 
             int id = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
             DtoMascota mascota = controladorMascota.buscarMascota(id);
@@ -876,6 +896,11 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 String nuevaEspecie = JOptionPane.showInputDialog(this, "Nueva Especie:\n(Recomendacion ingresar la especie (Perro o Gato) en mayuscula)");
                 int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(this, "Nueva Edad:"));
                 String documento = mascota.getDocumentoPropietario();
+                   
+        if (nuevoNombre == null || nuevaEspecie == null) {
+            JOptionPane.showMessageDialog(this, "Edición cancelada.");
+            return;
+        }
                 boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad, documento);
                 if (editado) {
                     JOptionPane.showMessageDialog(this, "La mascota fue editado correctamente.");
@@ -886,7 +911,41 @@ public class VentanaRegistro extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una mascota valida.");
+        }*/
+        int fila = tablamas.getSelectedRow();
+        if (fila != -1) {
+            int id = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
+            DtoMascota mascota = controladorMascota.buscarMascota(id);
+
+            if (mascota != null) {
+                int idActual = mascota.getId();
+                String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
+                String nuevaEspecie = JOptionPane.showInputDialog(this, "Nueva Especie: ");
+
+                if (nuevoNombre == null || nuevaEspecie == null) {
+                    JOptionPane.showMessageDialog(this, "Edición cancelada.");
+                    return;
+                }
+
+                try {
+                    int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(this, "Nueva Edad:"));
+                    String documento = mascota.getDocumentoPropietario();
+                    boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad, documento);
+
+                    if (editado) {
+                        JOptionPane.showMessageDialog(this, "La mascota fue editada correctamente.");
+                        ListarMascota();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "La mascota no se pudo editar.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Edad inválida. Debe ser un número.");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una mascota válida.");
         }
+
 
     }//GEN-LAST:event_bttEditarActionPerformed
 
@@ -1025,6 +1084,10 @@ public class VentanaRegistro extends javax.swing.JFrame {
         ListarPropietario();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+limpiarCamposProp();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     private void limpiarCampos() {
         txtDoc.setText(null);
         txtNomProp.setText(null);
@@ -1034,6 +1097,11 @@ public class VentanaRegistro extends javax.swing.JFrame {
         comboEspecie.setToolTipText(null);
         txtEdad.setText(null);
         txtDocuPropietario.setText(null);
+    }
+     private void limpiarCamposProp() {
+        txtDoc.setText(null);
+        txtNomProp.setText(null);
+        txtTel.setText(null);
     }
 
     public static void main(String args[]) {
@@ -1073,6 +1141,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarProp;
     private javax.swing.JButton btnEliminarProp;
     private javax.swing.JButton btnGuardarMas;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton bttBuscar;
     private javax.swing.JButton bttEditar;
     private javax.swing.JButton bttEliminar;

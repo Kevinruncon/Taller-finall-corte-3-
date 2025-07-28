@@ -20,6 +20,7 @@ controladores\VacunaControlador.class
 vistas\VentanaRegistro$12.class
 vistas\VentanaMedicina$6.class
 dto\DtoConsulta.class
+vistas\VentanaHistorial$3.class
 daos\DaoPropietario.class
 vistas\VentanaRegistro$4.class
 persistencia\ArchivoManager.class
@@ -46,6 +47,7 @@ vistas\VentanaVacuna.class
 vistas\VentanaMedicina$5.class
 vistas\VentanaRegistro$14.class
 vistas\VentanaRegistro$10.class
+vistas\VentanaRegistro$20.class
 dto\DtoPropietario.class
 vistas\VentanaHistorial.class
 vistas\VentanaRegistro$17.class
@@ -72,6 +74,7 @@ vistas\VentanaHistorial$1.class
 vistas\VentanaServicios.class
 vistas\VentanaRegistro$2.class
 daos\DaoConsulta.class
+vistas\VentanaPrincipal$4.class
 modelo\Persona.class
 vistas\VentanaMedicina$4.class
 vistas\VentanaServicios$1.class

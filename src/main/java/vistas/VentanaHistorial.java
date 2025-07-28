@@ -5,13 +5,17 @@
 package vistas;
 
 import controladores.ControladorHistorial;
+import controladores.MascotaControlador;
 import dto.DtoConsulta;
 import dto.DtoConsultaBase;
 import dto.DtoMascota;
 import dto.DtoVacuna;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import controladores.ControladorConsultaBase;
 
 /**
  *
@@ -21,102 +25,31 @@ public class VentanaHistorial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaHistorial.class.getName());
     private VentanaServicios ventanaServicios;
+    private MascotaControlador controladorMascota;
+    private ControladorConsultaBase controladorConsultaBase;
+    private ControladorHistorial controladorHistorial;
     /**
      * Creates new form VentanaHistorial
      */
-    public VentanaHistorial(VentanaServicios ventanaServicios) {
+    public VentanaHistorial(VentanaServicios ventanaServicios, MascotaControlador controladorMascota,ControladorConsultaBase controladorConsultaBase) {
         this.ventanaServicios = ventanaServicios;
+        this.controladorMascota = controladorMascota;
+        this.controladorConsultaBase = controladorConsultaBase; 
+        this.controladorHistorial = new ControladorHistorial();
         initComponents();
+         setTitle("Historial de Mascotas");
+        setLocationRelativeTo(this);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-   /* private void listarHistorial(int idMascota) {
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new Object[] {
-        "Fecha", "Código", "Tipo", "Diagnóstico / Tipo Vacuna", "Tratamiento / Próxima Dosis"
-    });
-
-    ControladorHistorial controladorHistorial = new ControladorHistorial();
-    ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(idMascota);
-
-    if (historial.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No hay historial para la mascota con ID: " + idMascota);
-    } else {
-        for (DtoConsultaBase entrada : historial) {
-            String tipo = (entrada instanceof DtoVacuna) ? "Vacuna" : "Consulta";
-
-            String columna4 = "";
-            String columna5 = "";
-
-            if (entrada instanceof DtoVacuna vacuna) {
-                columna4 = vacuna.getTipo();
-                columna5 = vacuna.getProximaDosis().toString();
-            } else if (entrada instanceof DtoConsulta consulta) {
-                columna4 = consulta.getDiagnostico();
-                columna5 = consulta.getTratamiento();
-            }
-
-            modelo.addRow(new Object[] {
-                entrada.getFecha(),
-                entrada.getCodigo(),
-                tipo,
-                columna4,
-                columna5
-            });
-        }
-    }
-
-    tablaHistorial.setModel(modelo);
-}*/
-  /*  private void listarHistorial(int idMascota) {
-    DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new Object[] {
-        "Nombre Mascota", "Documento Propietario", "Fecha", "Código", "Tipo", "Diagnóstico / Tipo Vacuna", "Tratamiento / Próxima Dosis"
-    });
-
-    ControladorHistorial controladorHistorial = new ControladorHistorial();
-    ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(idMascota);
-    DtoMascota mascota = controladorHistorial.obtenerMascota(idMascota); // Obtener la mascota
-
-    if (mascota == null) {
-        JOptionPane.showMessageDialog(this, "No se encontró la mascota con ID: " + idMascota);
-        return;
-    }
-
-    if (historial.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No hay historial para la mascota con ID: " + idMascota);
-    } else {
-        for (DtoConsultaBase entrada : historial) {
-            String tipo = (entrada instanceof DtoVacuna) ? "Vacuna" : "Consulta";
-            String columna4 = "", columna5 = "";
-
-            if (entrada instanceof DtoVacuna vacuna) {
-                columna4 = vacuna.getTipo();
-                columna5 = vacuna.getProximaDosis() != null ? vacuna.getProximaDosis().toString() : "";
-            } else if (entrada instanceof DtoConsulta consulta) {
-                columna4 = consulta.getDiagnostico();
-                columna5 = consulta.getTratamiento();
-            }
-
-            modelo.addRow(new Object[] {
-                mascota.getNombre(),
-                mascota.getDocumentoPropietario(),
-                entrada.getFecha(),
-                entrada.getCodigo(),
-                tipo,
-                columna4,
-                columna5
-            });
-        }
-    }
-
-    tablaHistorial.setModel(modelo);
-}*/
+   
 public void ListarHistorial(int id) {
      DefaultTableModel modelo = new DefaultTableModel();
     modelo.setColumnIdentifiers(new Object[] {
-        "Fecha", "Código","Id Mascota","Nombre Mascota", "Documento Propietario","Veterinario", "Especialidad", "Tipo","Diagnostico","Tratamiento", "Tipo Vacuna", "Próxima Dosis"
+        "Fecha", "Código","Id Mascota","Nombre Mascota", "Documento Propietario","Tipo","Veterinario", "Especialidad","Diagnostico","Tratamiento", "Tipo Vacuna", "Próxima Dosis"
     });
 //ID mascota","Nombre","Tipo", "Fecha", "Diagnostico", "Tratamiento","Vacuna", "Dosis", "Veterinario"
-    ControladorHistorial controladorHistorial = new ControladorHistorial();
+ //   ControladorHistorial controladorHistorial = new ControladorHistorial();
     ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(id);
     DtoMascota mascota = controladorHistorial.obtenerMascota(id); // Obtener la mascota
 
@@ -157,9 +90,9 @@ public void ListarHistorial(int id) {
             atencion.getIdMas(),
             nombreMascota,
             propietarioMascota,
+             tipo,
             veterinario,
             veterinarioesp,
-            tipo,
             diagnostico,
             tratamiento,
             tipoVacuna,
@@ -184,12 +117,15 @@ public void ListarHistorial(int id) {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaHistorial = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnBuscarHistorial = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtIdMasHistorial = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,27 +133,37 @@ public void ListarHistorial(int id) {
 
         jPanel2.setBackground(new java.awt.Color(132, 169, 140));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Historial ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(btnMenu)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         tablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
@@ -233,10 +179,10 @@ public void ListarHistorial(int id) {
         ));
         jScrollPane1.setViewportView(tablaHistorial);
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarHistorial.setText("Buscar");
+        btnBuscarHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBuscarHistorialActionPerformed(evt);
             }
         });
 
@@ -244,38 +190,48 @@ public void ListarHistorial(int id) {
 
         txtIdMasHistorial.setText("  ");
 
+        jButton1.setText("Mostrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtIdMasHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(jButton2)
-                        .addGap(0, 88, Short.MAX_VALUE)))
+                .addGap(358, 358, 358)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtIdMasHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(btnBuscarHistorial)
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtIdMasHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                    .addComponent(btnBuscarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,13 +248,13 @@ public void ListarHistorial(int id) {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         this.setVisible(false);
         ventanaServicios.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMenuActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBuscarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHistorialActionPerformed
         String input = txtIdMasHistorial.getText().trim();
 
         if (input.isEmpty()) {
@@ -313,13 +269,65 @@ public void ListarHistorial(int id) {
             JOptionPane.showMessageDialog(null, "El ID debe ser un número válido.");
             return;
         }
-
+        
+        DtoMascota buscar = controladorMascota.buscarMascota(id);
+        if(buscar != null){
         // Llama a tu método para llenar la tabla
         ListarHistorial(id);
+        }else{
+            JOptionPane.showMessageDialog(this, "Mascota sin historial, porfavor ingresa un Id valido.");
+        }
     
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBuscarHistorialActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+   /* int fila = tablaHistorial.getSelectedRow();
+    if(fila <= -1){
+        JOptionPane.showMessageDialog(this, "Porfavor seleccione una Consulta para mostar El diagnostico y tratamiento.");
+        return;
+    }
+    String codigo = tablaHistorial.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios*/
+  try {
+    int idmas = Integer.parseInt(txtIdMasHistorial.getText().trim());
+
+    ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(idmas);
+
+    if (historial == null || historial.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No se encontró historial para la mascota con ID " + idmas);
+        return;
+    }
+
+    for (DtoConsultaBase atencion : historial) {
+        if (atencion instanceof DtoConsulta consulta) {
+            String codigo = consulta.getCodigo();
+            DtoConsultaBase buscar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
+
+            if (buscar != null) {
+                DtoConsulta nueva = (DtoConsulta) buscar;
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Diagnóstico de la mascota con ID " + nueva.getIdMas() + ":\n" + nueva.getDiagnostico() +
+                    "\n\nTratamiento de la mascota con Id:" + nueva.getIdMas()+"\n" +nueva.getTratamiento(),
+                    "Consulta: " + nueva.getCodigo(),
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró información para el código: " + codigo);
+            }
+        }
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
+}
+
+    
+    
+    
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,9 +355,12 @@ public void ListarHistorial(int id) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarHistorial;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

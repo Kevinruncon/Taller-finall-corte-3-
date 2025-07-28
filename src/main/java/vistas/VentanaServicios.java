@@ -72,7 +72,7 @@ public class VentanaServicios extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gestion de Servicios ");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,7 +154,7 @@ public class VentanaServicios extends javax.swing.JFrame {
                         break;
                     case "Historial": 
                         if(ventanaHistorial == null){
-                            ventanaHistorial = new VentanaHistorial(this);
+                            ventanaHistorial = new VentanaHistorial(this,controladorMascota,controladorConsultaBase);
                         }
                         this.setVisible(false);
                         ventanaHistorial.setVisible(true);
