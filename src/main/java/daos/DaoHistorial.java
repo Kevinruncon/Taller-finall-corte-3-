@@ -5,7 +5,6 @@
 package daos;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 import persistencia.GestorPersistencia;
 import dto.DtoConsultaBase;
 import dto.DtoMascota;

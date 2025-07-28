@@ -23,10 +23,11 @@ import persistencia.GestorPersistencia;
  * @author Kevin
  */
 public class DaoConsultaBase {
+
     private final String ruta = "data/ConsultasYVacunas.dat";
     private final GestorPersistencia gestor = GestorPersistencia.getInstance();
 
-    public DaoConsultaBase () {
+    public DaoConsultaBase() {
     }
 
     private static DaoConsultaBase instancia;
@@ -38,7 +39,7 @@ public class DaoConsultaBase {
         return instancia;
     }
 
-    public boolean guardar(DtoConsultaBase consultaBase, Class<?> tipo) {
+    /* public boolean guardar(DtoConsultaBase consultaBase, Class<?> tipo) {
         ArrayList<DtoConsultaBase> lista = listar();
         for (int i = 0; i < lista.size(); i++) {
             if( lista.get(i).getCodigo().equals(consultaBase.getCodigo()) && tipo.isInstance(lista.get(i))){
@@ -48,6 +49,26 @@ public class DaoConsultaBase {
         lista.add(consultaBase);
         gestor.guardarLista(ruta, lista);
         return true;   
+    }*/
+    public boolean guardar(DtoConsultaBase consultaBase, Class<?> tipo) {
+        ArrayList<DtoConsultaBase> lista = listar();
+
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
+
+        // Validar si ya existe una entrada con el mismo código y tipo
+        for (DtoConsultaBase existente : lista) {
+            if (existente.getCodigo().equals(consultaBase.getCodigo()) && tipo.isInstance(existente)) {
+                return false; // Ya existe
+            }
+        }
+
+        lista.add(consultaBase);
+
+        // Guardar la lista actualizada
+        gestor.guardarLista(ruta, lista);  // No devuelve nada, simplemente guarda
+        return true;  // Se guardó con éxito
     }
 
     public ArrayList<DtoConsultaBase> listar() {
@@ -57,6 +78,10 @@ public class DaoConsultaBase {
 
     public boolean eliminar(String codigo, Class<?> tipo) {
         ArrayList<DtoConsultaBase> lista = listar();
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
+
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getCodigo().equals(codigo) && tipo.isInstance(lista.get(i))) {
                 lista.remove(i);
@@ -69,6 +94,9 @@ public class DaoConsultaBase {
 
     public boolean actualizar(DtoConsultaBase consultaBase, Class<?> tipo) {
         ArrayList<DtoConsultaBase> lista = listar();
+        if (lista == null) {
+            lista = new ArrayList<>();
+        }
 
         for (int i = 0; i < lista.size(); i++) {
             DtoConsultaBase actual = lista.get(i);
@@ -81,21 +109,20 @@ public class DaoConsultaBase {
         return false;
     }
 
-    public DtoConsultaBase buscarConsultas(String codigo, Class<?> tipo){
+    public DtoConsultaBase buscarConsultas(String codigo, Class<?> tipo) {
         ArrayList<DtoConsultaBase> lista = listar();
-       for (int i = 0; i < lista.size(); i++) {
-           if(lista.get(i).getCodigo().equals(codigo) && tipo.isInstance(lista.get(i))){
-               return lista.get(i);  
-           }
-       }
-       return null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getCodigo().equals(codigo) && tipo.isInstance(lista.get(i))) {
+                return lista.get(i);
+            }
+        }
+        return null;
 
     }
-            
+
 }
 
-  
- /* private final String archivo = "data/ConsultasyVacunas.dat";
+/* private final String archivo = "data/ConsultasyVacunas.dat";
 
     public boolean guardarConsulta(ArrayList<DtoConsultaBase> consultaBase) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
